@@ -30,7 +30,7 @@ using it's address.
 	//if we want to see if that address is the same as the variable expected
 	printf(" address of variable named expected is %p \n",&expected);
 	//these print statment print the same thing because we set our pointer to point to expected
-	
+
 	//If we want to see the value that the pointer is pointing to,
 	//we use the * before our pointer
 	printf(" value that pointa points to is %d \n",*pointa);
@@ -47,4 +47,16 @@ using it's address.
 	printf("expected = %d, old value which was returned is %d \n",expected,valueReturned);
 
 	return EXIT_SUCCESS;
+}
+
+int compare_and_swap(int *pointb, int expected, int new_value)
+{
+	//we can use the same name for expected and it will be a different variable in this function.
+	int temp = *pointb;
+	//created a temp variable to store the original value located at the pointer pointb
+	if(*pointb == expected)
+	{
+		*pointbntb = new_value;
+	}
+	return temp;
 }
