@@ -7,6 +7,7 @@
 //this is a function prototype that lets the main know a function is available at
 //the end of the program.
 int compare_and_swap(int *pointb, int expected, int new_value);
+void compare_and_swap_pointers(int* expected, int* new_value, int* first_additional, int* second_additional);
 
 int main(void)
 {
@@ -44,7 +45,18 @@ using it's address.
 	int valueReturned = compare_and_swap(pointa,expected,newValue);
 
 	//after the function completes it should have swapped expected with new value
-	printf("expected = %d, old value which was returned is %d \n",expected,valueReturned);
+	printf("expected = %d, old value which was returned is %d \n\n",expected,valueReturned);
+
+	newValue = 1;
+	int first_additional = 50;
+	int second_additional = 100;
+
+	printf("Values before swapping: expected = %d, new_value = %d\n", expected, newValue);
+	printf("Additional values before swapping: first = %d, second = %d\n", first_additional, second_additional);
+
+	compare_and_swap_pointers(&expected, &newValue, &first_additional, &second_additional);
+	printf("Values afer swapping: expected = %d, newValue = %d\n", expected, newValue);
+	printf("Additional values after swapping: first = %d, second = %d\n", first_additional, second_additional);
 
 	return EXIT_SUCCESS;
 }
@@ -56,7 +68,18 @@ int compare_and_swap(int *pointb, int expected, int new_value)
 	//created a temp variable to store the original value located at the pointer pointb
 	if(*pointb == expected)
 	{
-		*pointbntb = new_value;
+		*pointb = new_value;
 	}
 	return temp;
+}
+
+void compare_and_swap_pointers(int* expected, int* new_value, int* first_additional, int* second_additional){
+	int* temp = new_value;
+	new_value = expected;
+	expected = temp;
+
+	//Now the two additinoal values
+	temp = second_additional;
+	second_additional = first_additional;
+	first_additional = temp;
 }
