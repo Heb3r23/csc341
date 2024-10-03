@@ -74,12 +74,12 @@ int compare_and_swap(int *pointb, int expected, int new_value)
 }
 
 void compare_and_swap_pointers(int* expected, int* new_value, int* first_additional, int* second_additional){
-	int* temp = new_value;
-	new_value = expected;
-	expected = temp;
+	int temp = *new_value;
+	*new_value = *expected;
+	*expected = temp;
 
 	//Now the two additinoal values
-	temp = second_additional;
-	second_additional = first_additional;
-	first_additional = temp;
+	temp = *second_additional;
+	*second_additional = *first_additional;
+	*first_additional = temp;
 }
